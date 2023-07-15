@@ -19,6 +19,12 @@ public class TextilesController {
         this.textilesService = textilesService;
     }
 
+    @PostMapping("/FindByName")
+    public ResponseEntity<Textiles> findByName(@RequestBody Textiles textiles){
+        Textiles textile = textilesService.findByName(textiles);
+        return new ResponseEntity<>(textile, HttpStatus.OK);
+    }
+
     @GetMapping("/Select")
     public ResponseEntity<List<Textiles>> selectTextile(){
         List<Textiles> textiles = textilesService.selectTextile();

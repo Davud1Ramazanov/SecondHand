@@ -16,15 +16,23 @@ public class BrandsService {
         this.brandsRepo = brandRepo;
     }
 
-    public List<Brands> selectBrand(){
+    public Brands findByName(Brands brands) {
+        Brands brand = brandsRepo.findByName(brands.getName());
+        if (brand != null) {
+            return brand;
+        }
+        return null;
+    }
+
+    public List<Brands> selectBrand() {
         return brandsRepo.findAll();
     }
 
-    public Brands createBrand(Brands brands){
+    public Brands createBrand(Brands brands) {
         return brandsRepo.save(brands);
     }
 
-    public Brands updateBrand(Brands brands, Integer id){
+    public Brands updateBrand(Brands brands, Integer id) {
         Brands brand = brandsRepo.findById(id).orElseThrow(() -> new RuntimeException("Brands update error!"));
         brand.setName(brands.getName());
         brand.setFaq(brands.getFaq());
@@ -34,7 +42,7 @@ public class BrandsService {
         return brandsRepo.save(brand);
     }
 
-    public void deleteBrand(Integer id){
+    public void deleteBrand(Integer id) {
         brandsRepo.deleteById(id);
     }
 }

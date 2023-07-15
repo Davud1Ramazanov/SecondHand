@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -22,19 +23,13 @@ public class Orders {
     @JsonIgnoreProperties({"hibernateLazyInitializer"})
     private Products product;
 
-    @Column(name = "Name", nullable = false, length = 100)
-    private String name;
-
     @Column(name = "Quantity", nullable = false)
     private Integer quantity;
 
     @Column(name = "total", nullable = false)
-    private Float total;
-
-    @Column(name = "Image", length = 3000)
-    private String image;
+    private Integer total;
 
     @Column(name = "date")
-    private Instant date;
+    private LocalDate date;
 
 }

@@ -16,6 +16,14 @@ public class CategoriesService {
         this.categoriesRepo = categoryRepo;
     }
 
+    public Categories findByName(Categories categories){
+        Categories category = categoriesRepo.findByName(categories.getName());
+        if(category != null){
+            return category;
+        }
+        return null;
+    }
+
     public List<Categories> selectCategory() {
         return categoriesRepo.findAll();
     }

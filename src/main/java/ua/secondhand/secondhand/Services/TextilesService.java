@@ -16,15 +16,23 @@ public class TextilesService {
         this.textilesRepos = textilesRepos;
     }
 
-    public List<Textiles> selectTextile(){
+    public Textiles findByName(Textiles textiles) {
+        Textiles textile = textilesRepos.findByName(textiles.getName());
+        if (textile != null) {
+            return textile;
+        }
+        return null;
+    }
+
+    public List<Textiles> selectTextile() {
         return textilesRepos.findAll();
     }
 
-    public Textiles createTextile(Textiles textiles){
+    public Textiles createTextile(Textiles textiles) {
         return textilesRepos.save(textiles);
     }
 
-    public Textiles updateTextile(Textiles textiles, Integer id){
+    public Textiles updateTextile(Textiles textiles, Integer id) {
         Textiles textile = textilesRepos.findById(id).orElseThrow(() -> new RuntimeException("Textiles update error!"));
         textile.setName(textiles.getName());
         textile.setImage(textiles.getImage());
@@ -34,7 +42,7 @@ public class TextilesService {
         return textilesRepos.save(textile);
     }
 
-    public void deleteTextile(Integer id){
+    public void deleteTextile(Integer id) {
         textilesRepos.deleteById(id);
     }
 }

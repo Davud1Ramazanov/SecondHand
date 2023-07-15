@@ -19,6 +19,12 @@ public class CategoriesController {
         this.categoriesService = categoriesService;
     }
 
+    @PostMapping("/FindByName")
+    public ResponseEntity<Categories> findByName(@RequestBody Categories categories){
+        Categories category = categoriesService.findByName(categories);
+        return new ResponseEntity<>(category, HttpStatus.OK);
+    }
+
     @GetMapping("/Select")
     public ResponseEntity<List<Categories>> selectCategory(){
         List<Categories> categories = categoriesService.selectCategory();

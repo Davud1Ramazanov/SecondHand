@@ -18,6 +18,43 @@ public class ProductsController {
     public ProductsController(ProductsService productsService) {
         this.productsService = productsService;
     }
+
+    @PostMapping("/FindById/{id}")
+    public ResponseEntity<Products> findById(@PathVariable Integer id){
+        Products products = productsService.findById(id);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @PostMapping("/FindByName")
+    public ResponseEntity<Products> findByName(@RequestBody Products products) {
+        Products product = productsService.findByName(products);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @PostMapping("/FindByTextilesId/{id}")
+    public ResponseEntity<List<Products>> findByTextilesId(@PathVariable Integer id){
+        List<Products> products = productsService.findByTextilesId(id);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @PostMapping("/FindByBrandsId/{id}")
+    public ResponseEntity<List<Products>> findByBrandsId(@PathVariable Integer id){
+        List<Products> products = productsService.findByBrandId(id);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @PostMapping("/FindByTextilesNameAndId/{id}")
+    public ResponseEntity<Products> findByTextilesNameAndId(@PathVariable Integer id, @RequestBody Products products){
+        Products product = productsService.findByNameTextiles(products, id);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @PostMapping("/FindByBrandsNameAndId/{id}")
+    public ResponseEntity<Products> findByBrandsNameAndId(@PathVariable Integer id, @RequestBody Products products){
+        Products product = productsService.findByNameTextiles(products, id);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
     @GetMapping("/Select")
     public ResponseEntity<List<Products>> selectProduct(){
         List<Products> products = productsService.selectProduct();
