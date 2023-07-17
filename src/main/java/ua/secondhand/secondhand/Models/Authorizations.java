@@ -15,7 +15,7 @@ public class Authorizations {
     @Column(name = "user_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "role_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer"})
     private Roles role;

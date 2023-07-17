@@ -51,7 +51,7 @@ public class ProductsController {
 
     @PostMapping("/FindByBrandsNameAndId/{id}")
     public ResponseEntity<Products> findByBrandsNameAndId(@PathVariable Integer id, @RequestBody Products products){
-        Products product = productsService.findByNameTextiles(products, id);
+        Products product = productsService.findByNameBrands(products, id);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 

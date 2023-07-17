@@ -19,6 +19,12 @@ public class AuthorizationsController {
         this.authService = authService;
     }
 
+    @GetMapping("/FindAuthName")
+    public ResponseEntity<Authorizations> findAuthName(){
+        Authorizations authInfo = authService.getAuthInfo();
+        return new ResponseEntity<>(authInfo, HttpStatus.OK);
+    }
+
     @PostMapping("/FindByUserName")
     public ResponseEntity<Authorizations> findByUserName(@RequestBody Authorizations authorizations){
         Authorizations authorization = authService.findByNameAccount(authorizations.getName());

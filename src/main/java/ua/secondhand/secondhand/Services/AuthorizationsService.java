@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 
 import ua.secondhand.secondhand.Models.Authorizations;
 import ua.secondhand.secondhand.Repositories.IAuthorizationsRepository;
-import ua.secondhand.secondhand.Models.Roles;
 
 import java.util.List;
 
 @Service
 public class AuthorizationsService {
     private final IAuthorizationsRepository authRepos;
+    private Authorizations authInfo;
 
     @Autowired
     public AuthorizationsService(IAuthorizationsRepository authRepos) {
@@ -31,6 +31,7 @@ public class AuthorizationsService {
         if (authorizations == null || authorizations.getRole().getId().equals(1)) {
             return false;
         }
+        authInfo = authorizations;
         return authorizations.getPassword().equals(password);
     }
 
@@ -40,6 +41,10 @@ public class AuthorizationsService {
             return false;
         }
         return authorizations.getPassword().equals(password);
+    }
+
+    public Authorizations getAuthInfo(){
+        return authInfo;
     }
 
     public boolean regAcc(Authorizations authorizations) {

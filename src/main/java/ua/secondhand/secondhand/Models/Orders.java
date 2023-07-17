@@ -23,6 +23,11 @@ public class Orders {
     @JsonIgnoreProperties({"hibernateLazyInitializer"})
     private Products product;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer"})
+    private Authorizations user;
+
     @Column(name = "Quantity", nullable = false)
     private Integer quantity;
 
