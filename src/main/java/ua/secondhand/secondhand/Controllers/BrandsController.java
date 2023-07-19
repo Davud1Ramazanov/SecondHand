@@ -8,6 +8,7 @@ import ua.secondhand.secondhand.Models.Brands;
 import ua.secondhand.secondhand.Services.BrandsService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Brands")
@@ -22,6 +23,12 @@ public class BrandsController {
     @PostMapping("/FindByName")
     public ResponseEntity<Brands> findByName(@RequestBody Brands brands){
         Brands brand = brandsService.findByName(brands);
+        return new ResponseEntity<>(brand, HttpStatus.OK);
+    }
+
+    @PostMapping("/FindById/{id}")
+    public ResponseEntity<Brands> findById(@PathVariable Integer id){
+        Brands brand = brandsService.findById(id);
         return new ResponseEntity<>(brand, HttpStatus.OK);
     }
 

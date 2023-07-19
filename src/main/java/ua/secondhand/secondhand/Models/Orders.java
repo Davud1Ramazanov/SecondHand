@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -34,7 +36,8 @@ public class Orders {
     @Column(name = "total", nullable = false)
     private Integer total;
 
-    @Column(name = "date")
-    private LocalDate date;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date", columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    private Date date = new Date();
 
 }

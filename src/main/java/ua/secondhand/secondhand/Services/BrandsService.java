@@ -6,6 +6,7 @@ import ua.secondhand.secondhand.Models.Brands;
 import ua.secondhand.secondhand.Repositories.IBrandsRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BrandsService {
@@ -20,6 +21,14 @@ public class BrandsService {
         Brands brand = brandsRepo.findByName(brands.getName());
         if (brand != null) {
             return brand;
+        }
+        return null;
+    }
+
+    public Brands findById(Integer id) {
+        Optional<Brands> brands = brandsRepo.findById(id);
+        if (brands != null) {
+            return brands.get();
         }
         return null;
     }
